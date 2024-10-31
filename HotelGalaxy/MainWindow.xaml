@@ -1,0 +1,45 @@
+﻿<Window x:Class="HotelGalaxy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelGalaxy"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Height="393" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="73*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="159*"/>
+            <RowDefinition Height="108*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Авторизация" HorizontalAlignment="Left" Margin="289,10,0,0" VerticalAlignment="Top" Height="41" Width="167" FontSize="24" FontFamily="Comic Sans MS" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Row="1"/>
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="226,0,0,0" VerticalAlignment="Top" FontSize="16" Grid.Row="2" FontFamily="Comic Sans MS" Height="44" Width="62" RenderTransformOrigin="0.984,0.477"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="214,88,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="ExtraLight" Grid.Row="2" FontFamily="Comic Sans MS" Height="44" Width="74" RenderTransformOrigin="0.851,0.432"/>
+        <TextBox x:Name="log" HorizontalAlignment="Left" Height="32" Margin="324,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" Grid.ColumnSpan="2" Grid.Row="2"/>
+        <TextBox x:Name="par" HorizontalAlignment="Left" Height="31" Margin="324,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" Grid.ColumnSpan="2" Grid.Row="2"/>
+        <Button x:Name="Login" Content="Войти" HorizontalAlignment="Left" Margin="85,39,0,0" VerticalAlignment="Top" Width="203" Height="46" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" BorderBrush="#FF3B146A" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto" FontSize="18" FontWeight="ExtraLight" Click="Login_Click" Grid.Row="3" FontFamily="Comic Sans MS">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="30"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="Register" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="72,39,0,0" VerticalAlignment="Top" Width="217" Height="46" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" BorderBrush="#FF3B146A" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto" FontWeight="ExtraLight" FontSize="18" Click="Register_Click" Grid.Column="1" Grid.Row="3" FontFamily="Comic Sans MS">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="30 "/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Image Margin="43,10,271,5" Stretch="Fill" RenderTransformOrigin="0.881,0.26"/>
+        <Label Content="Гостиница" HorizontalAlignment="Left" Margin="98,11,0,0" VerticalAlignment="Top" Width="130" FontFamily="Comic Sans MS" FontSize="20" Grid.Column="1"/>
+        <Label Content="Galaxy" HorizontalAlignment="Left" Margin="206,0,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Magneto" Height="55" Width="179" FontWeight="Bold" Foreground="#FF9E87C5" Grid.Column="1"/>
+
+    </Grid>
+</Window>
+
