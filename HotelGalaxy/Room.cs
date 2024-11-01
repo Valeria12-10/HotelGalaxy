@@ -12,15 +12,21 @@ namespace HotelGalaxy
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Room
     {
-        public int ID { get; set; }
-        public string Логин { get; set; }
-        public string Пароль { get; set; }
-        public string ФИО { get; set; }
-        public string Телефон { get; set; }
-        public Nullable<int> Роль { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Room()
+        {
+            this.Booking = new HashSet<Booking>();
+        }
     
-        public virtual Role Role { get; set; }
+        public int ID_room { get; set; }
+        public string Номер { get; set; }
+        public string Категория_номера { get; set; }
+        public string Цена { get; set; }
+        public string Доступность { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Booking> Booking { get; set; }
     }
 }

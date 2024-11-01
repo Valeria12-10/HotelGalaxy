@@ -28,5 +28,10 @@ namespace HotelGalaxy
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<AdditionalService> AdditionalService { get; set; }
+        public virtual DbSet<Agreement> Agreement { get; set; }
+        public virtual DbSet<Booking> Booking { get; set; }
+        public virtual DbSet<Guest> Guest { get; set; }
+        public virtual DbSet<Room> Room { get; set; }
     }
 }

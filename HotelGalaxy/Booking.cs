@@ -12,15 +12,17 @@ namespace HotelGalaxy
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Booking
     {
-        public int ID { get; set; }
-        public string Логин { get; set; }
-        public string Пароль { get; set; }
-        public string ФИО { get; set; }
-        public string Телефон { get; set; }
-        public Nullable<int> Роль { get; set; }
+        public int ID_Booking { get; set; }
+        public Nullable<int> Гость { get; set; }
+        public Nullable<int> Номер { get; set; }
+        public Nullable<System.DateTime> Дата_заезда { get; set; }
+        public Nullable<System.DateTime> Дата_выезда { get; set; }
+        public string Количество_дней_проживания { get; set; }
+        public string Статус_бронирования { get; set; }
     
-        public virtual Role Role { get; set; }
+        public virtual Guest Guest { get; set; }
+        public virtual Room Room { get; set; }
     }
 }

@@ -20,5 +20,32 @@ namespace HotelGalaxy
         {
             InitializeComponent();
         }
+
+        private void Bron_Click(object sender, RoutedEventArgs e)
+        {
+            Reservation fn = new Reservation();
+            fn.Show();
+            this.Close();
+        }
+
+        private void ViewRoom_Click(object sender, RoutedEventArgs e)
+        {
+            using (var db = new GalaxyEntities())
+            {
+                var rooms = (from room in db.Room
+                                  
+                                  select new
+                                  {
+                                      ID = room.ID_room,
+                                      Номер_номера = room.Номер,
+                                      Категория_номера = room.Категория_номера,
+                                      Цена = room.Цена,
+                                      Доступность = room.Доступность
+                                  }).ToList();
+
+                // Заполнение DataGrid данными
+                data.ItemsSource = rooms;
+            }
+        }
     }
 }

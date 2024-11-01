@@ -12,15 +12,10 @@ namespace HotelGalaxy
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class AdditionalService
     {
-        public int ID { get; set; }
-        public string Логин { get; set; }
-        public string Пароль { get; set; }
-        public string ФИО { get; set; }
-        public string Телефон { get; set; }
-        public Nullable<int> Роль { get; set; }
-    
-        public virtual Role Role { get; set; }
+        public int ID_AdditionalService { get; set; }
+        public string Название { get; set; }
+        public decimal Цена { get; set; }
     }
 }

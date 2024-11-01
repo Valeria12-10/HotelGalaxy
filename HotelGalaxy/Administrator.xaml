@@ -5,9 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HotelGalaxy"
         mc:Ignorable="d"
-        Title="Administrator" Height="450" Width="800">
+        Title="Administrator" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <Label Content="Добро пожаловать" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
-        <TextBox x:Name="text" HorizontalAlignment="Left" Height="23" Margin="151,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="199"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="247*"/>
+            <ColumnDefinition Width="553*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="159*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="25*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="data"  Margin="45,51,61,27" AutoGenerateColumns="True" IsReadOnly="True" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.345"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.494"/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+        </DataGrid>
+
+        <StackPanel Margin="10,2,11,4" Grid.Row="2">
+            <TextBlock  x:Name="role" FontWeight="Bold" FontSize="11" Width="224" Height="21" RenderTransformOrigin="0.494,0.669"><Run Text="П:" FontFamily="Comic Sans MS"/></TextBlock>
+            <TextBlock x:Name="user" FontWeight="Bold" FontSize="11" Height="17" Width="224"><Run Text="И" FontFamily="Comic Sans MS"/></TextBlock>
+        </StackPanel>
+        <Button x:Name="Bron" Content="Бронирование" HorizontalAlignment="Left" Margin="151,0,0,0" VerticalAlignment="Center" Width="203" Height="46" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" BorderBrush="#FF3B146A" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto" FontSize="18" FontWeight="ExtraLight" Click="Bron_Click" FontFamily="Comic Sans MS" Grid.ColumnSpan="2" Grid.Row="1">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="30"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="ViewRoom" Content="Просмотр номеров" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="46" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" BorderBrush="#FF3B146A" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto" FontSize="18" FontWeight="ExtraLight" Click="ViewRoom_Click" FontFamily="Comic Sans MS" Grid.Column="1" Grid.Row="1">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="30"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
