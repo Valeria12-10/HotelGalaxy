@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище GalaxyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdditionalService">
+          <Key>
+            <PropertyRef Name="ID_AdditionalService" />
+          </Key>
+          <Property Name="ID_AdditionalService" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" />
+          <Property Name="Цена" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agreement">
+          <Key>
+            <PropertyRef Name="ID_Agreement" />
+          </Key>
+          <Property Name="ID_Agreement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Бронирование" Type="int" />
+          <Property Name="Дата заключения" Type="date" />
+          <Property Name="Список услуг" Type="int" />
+          <Property Name="Общая стоимость" Type="money" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="ID_Booking" />
+          </Key>
+          <Property Name="ID_Booking" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Гость" Type="int" />
+          <Property Name="Номер" Type="int" />
+          <Property Name="Количество_человек" Type="varchar" MaxLength="255" />
+          <Property Name="Дата_заезда" Type="date" />
+          <Property Name="Дата_выезда" Type="date" />
+          <Property Name="Количество_дней_проживания" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="ID_Guest" />
+          </Key>
+          <Property Name="ID_Guest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="50" />
+          <Property Name="Телефон" Type="varchar" MaxLength="20" />
+          <Property Name="Серия и Номер Паспорта" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID_role" />
+          </Key>
+          <Property Name="ID_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Роль" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="ID_room" />
+          </Key>
+          <Property Name="ID_room" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Номер" Type="nvarchar" MaxLength="50" />
+          <Property Name="Категория_номера" Type="nvarchar" MaxLength="50" />
+          <Property Name="Цена" Type="varchar" MaxLength="50" />
+          <Property Name="Доступность" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="100" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="100" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="100" />
+          <Property Name="Телефон" Type="varchar" MaxLength="50" />
+          <Property Name="Роль" Type="int" />
+        </EntityType>
+        <Association Name="FK_Booking_Guest">
+          <End Role="Guest" Type="Self.Guest" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="ID_Guest" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="Гость" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="ID_room" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="Номер" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID_role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Роль" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище GalaxyModelContainer">
+          <EntitySet Name="AdditionalService" EntityType="Self.AdditionalService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Agreement" EntityType="Self.Agreement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Booking_Guest" Association="Self.FK_Booking_Guest">
+            <End Role="Guest" EntitySet="Guest" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Room" Association="Self.FK_Booking_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GalaxyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdditionalService">
+          <Key>
+            <PropertyRef Name="ID_AdditionalService" />
+          </Key>
+          <Property Name="ID_AdditionalService" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agreement">
+          <Key>
+            <PropertyRef Name="ID_Agreement" />
+          </Key>
+          <Property Name="ID_Agreement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Бронирование" Type="Int32" />
+          <Property Name="Дата_заключения" Type="DateTime" Precision="0" />
+          <Property Name="Список_услуг" Type="Int32" />
+          <Property Name="Общая_стоимость" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="ID_Booking" />
+          </Key>
+          <Property Name="ID_Booking" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Гость" Type="Int32" />
+          <Property Name="Номер" Type="Int32" />
+          <Property Name="Количество_человек" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Дата_заезда" Type="DateTime" Precision="0" />
+          <Property Name="Дата_выезда" Type="DateTime" Precision="0" />
+          <Property Name="Количество_дней_проживания" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Guest" Relationship="Self.FK_Booking_Guest" FromRole="Booking" ToRole="Guest" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Booking_Room" FromRole="Booking" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="ID_Guest" />
+          </Key>
+          <Property Name="ID_Guest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Телефон" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Серия_и_Номер_Паспорта" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK_Booking_Guest" FromRole="Guest" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID_role" />
+          </Key>
+          <Property Name="ID_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Роль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="ID_room" />
+          </Key>
+          <Property Name="ID_room" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Категория_номера" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Цена" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Доступность" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK_Booking_Room" FromRole="Room" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Логин" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ФИО" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Роль" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_Booking_Guest">
+          <End Role="Guest" Type="Self.Guest" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="ID_Guest" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="Гость" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="ID_room" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="Номер" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID_role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Роль" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GalaxyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdditionalService" EntityType="Self.AdditionalService" />
+          <EntitySet Name="Agreement" EntityType="Self.Agreement" />
+          <EntitySet Name="Booking" EntityType="Self.Booking" />
+          <EntitySet Name="Guest" EntityType="Self.Guest" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Room" EntityType="Self.Room" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Booking_Guest" Association="Self.FK_Booking_Guest">
+            <End Role="Guest" EntitySet="Guest" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Room" Association="Self.FK_Booking_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище GalaxyModelContainer" CdmEntityContainer="GalaxyEntities">
+          <EntitySetMapping Name="AdditionalService">
+            <EntityTypeMapping TypeName="GalaxyModel.AdditionalService">
+              <MappingFragment StoreEntitySet="AdditionalService">
+                <ScalarProperty Name="ID_AdditionalService" ColumnName="ID_AdditionalService" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agreement">
+            <EntityTypeMapping TypeName="GalaxyModel.Agreement">
+              <MappingFragment StoreEntitySet="Agreement">
+                <ScalarProperty Name="ID_Agreement" ColumnName="ID_Agreement" />
+                <ScalarProperty Name="Бронирование" ColumnName="Бронирование" />
+                <ScalarProperty Name="Дата_заключения" ColumnName="Дата заключения" />
+                <ScalarProperty Name="Список_услуг" ColumnName="Список услуг" />
+                <ScalarProperty Name="Общая_стоимость" ColumnName="Общая стоимость" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Booking">
+            <EntityTypeMapping TypeName="GalaxyModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="ID_Booking" ColumnName="ID_Booking" />
+                <ScalarProperty Name="Гость" ColumnName="Гость" />
+                <ScalarProperty Name="Номер" ColumnName="Номер" />
+                <ScalarProperty Name="Количество_человек" ColumnName="Количество_человек" />
+                <ScalarProperty Name="Дата_заезда" ColumnName="Дата_заезда" />
+                <ScalarProperty Name="Дата_выезда" ColumnName="Дата_выезда" />
+                <ScalarProperty Name="Количество_дней_проживания" ColumnName="Количество_дней_проживания" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guest">
+            <EntityTypeMapping TypeName="GalaxyModel.Guest">
+              <MappingFragment StoreEntitySet="Guest">
+                <ScalarProperty Name="ID_Guest" ColumnName="ID_Guest" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Серия_и_Номер_Паспорта" ColumnName="Серия и Номер Паспорта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="GalaxyModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="ID_role" ColumnName="ID_role" />
+                <ScalarProperty Name="Роль" ColumnName="Роль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room">
+            <EntityTypeMapping TypeName="GalaxyModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="ID_room" ColumnName="ID_room" />
+                <ScalarProperty Name="Номер" ColumnName="Номер" />
+                <ScalarProperty Name="Категория_номера" ColumnName="Категория_номера" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Доступность" ColumnName="Доступность" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GalaxyModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="GalaxyModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Роль" ColumnName="Роль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

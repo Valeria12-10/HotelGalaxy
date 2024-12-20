@@ -1,0 +1,66 @@
+﻿<Window x:Class="HotelGalaxy.Administrator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelGalaxy"
+        mc:Ignorable="d"
+        Title="Администратор" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/fon.jpg" Opacity="0.8"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="261*"/>
+            <ColumnDefinition Width="449*"/>
+            <ColumnDefinition Width="90*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="159*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="26*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="data"  Margin="45,79,50,6" AutoGenerateColumns="True" IsReadOnly="True" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" >
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.345"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.494"/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+        </DataGrid>
+
+        <StackPanel Margin="8,0,0,267" Grid.ColumnSpan="1">
+            <TextBlock  x:Name="role" FontWeight="Bold" FontSize="11" Width="224" Height="20" RenderTransformOrigin="0.494,0.669"><Run Text="П:" FontFamily="Comic Sans MS"/></TextBlock>
+            <TextBlock x:Name="user" FontWeight="Bold" FontSize="11" Height="26" Width="224"><Run Text="И" FontFamily="Comic Sans MS"/></TextBlock>
+        </StackPanel>
+        <Button x:Name="Bron" Content="Узнать наличие свободных мест и забронировать" HorizontalAlignment="Left" Margin="193,15,0,0" VerticalAlignment="Top" Width="429" Height="39" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" BorderBrush="#FF3B146A" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto" FontSize="14" FontWeight="ExtraLight" Click="Bron_Click" FontFamily="Comic Sans MS" Grid.Row="1" Grid.ColumnSpan="2">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="30"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Center" Width="78" Click="Button_Click" BorderBrush="#FFA026A0" Background="White" Height="30" FontFamily="Comic Sans MS" Grid.Row="2" Grid.Column="2">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="15 "/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="ViewNum" HorizontalAlignment="Left" Margin="8,42,0,0" VerticalAlignment="Top" Width="185" Height="24" Background="{x:Null}" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto" FontSize="16" Click="ViewRoom_Click" FontFamily="Comic Sans MS" RenderTransformOrigin="0.633,7.315" Cursor="Hand" BorderBrush="{x:Null}">
+            <TextBlock TextDecorations="Underline" Text="Посмотреть номеров" Width="173" Height="21" FontSize="16"/>
+        </Button>
+        <Button x:Name="ViewBron" HorizontalAlignment="Left" Margin="193,42,0,0" VerticalAlignment="Top" Width="215" Height="24" Background="{x:Null}" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto" FontSize="12" Click="ViewBron_Click" FontFamily="Comic Sans MS" RenderTransformOrigin="0.633,7.315" Cursor="Hand" BorderBrush="{x:Null}" Grid.ColumnSpan="2">
+            <TextBlock TextDecorations="Underline" Text="Посмотреть бронирования" Width="210" Height="21" FontSize="16"/>
+        </Button>
+        <Button x:Name="ViewGu" HorizontalAlignment="Left" Margin="152,42,0,0" VerticalAlignment="Top" Width="157" Height="24" Background="{x:Null}" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto" FontSize="12" Click="ViewGu_Click" FontFamily="Comic Sans MS" RenderTransformOrigin="0.633,7.315" Cursor="Hand" BorderBrush="{x:Null}" Grid.Column="1">
+            <TextBlock TextDecorations="Underline" Text="Посмотреть гостей" Width="157" Height="21" FontSize="16"/>
+        </Button>
+        <Button x:Name="ViewDO" HorizontalAlignment="Left" Margin="326,42,0,0" VerticalAlignment="Top" Width="181" Height="24" Background="{x:Null}" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto" FontSize="12" Click="ViewGo_Click" FontFamily="Comic Sans MS" RenderTransformOrigin="0.633,7.315" Cursor="Hand" BorderBrush="{x:Null}" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock TextDecorations="Underline" Text="Посмотреть договора" Width="181" Height="21" FontSize="16"/>
+        </Button>
+
+    </Grid>
+</Window>
